@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snapfolio</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+  <div id="main" class="container">
+    <header class="text-center my-4">
+      <h1>Benvenuto su Snapfolio</h1>
+      <p class="lead">Il tuo portfolio fotografico dinamico, reso facile grazie all'integrazione con l'API di Unsplash.</p>
+    </header>
+
+    <div class="text-center my-4">
+      <p class="auth-links">
+        <a href="/login" class="btn btn-link">Accedi al tuo account</a> 
+        oppure 
+        <a href="/register" class="btn btn-link">Registrati</a>
+      </p>
+    </div>
+
+    <section id="about" class="my-4">
+      <h2>Informazioni su Snapfolio</h2>
+      <p>Snapfolio è un'applicazione per creare e gestire facilmente il proprio portfolio fotografico online, utilizzando immagini ad alta risoluzione dall'API di Unsplash.</p>
+      <ul class="list-group">
+        <li class="list-group-item">Creazione del profilo: Registrati e crea il tuo profilo con informazioni personali.</li>
+        <li class="list-group-item">Aggiunta di progetti: Aggiungi nuovi progetti e organizza le immagini per categoria e tag.</li>
+        <li class="list-group-item">Selezione delle immagini: Cerca e seleziona immagini di alta qualità da Unsplash.</li>
+        <li class="list-group-item">Personalizzazione del layout: Personalizza il design del tuo portfolio per riflettere il tuo stile unico.</li>
+        <li class="list-group-item">Condivisione e pubblicazione: Condividi il tuo portfolio con un link unico o integralo nel tuo sito web.</li>
+      </ul>
+    </section>
+  </div>
+</body>
+
+</html>
