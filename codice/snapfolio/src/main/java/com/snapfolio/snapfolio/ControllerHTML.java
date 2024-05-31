@@ -8,9 +8,18 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class ControllerHTML {
 
+    // Metodo per verificare se l'utente ha fatto il login
+    private boolean isLoggedIn(HttpSession session) {
+        return session.getAttribute("logged") != null && (boolean) session.getAttribute("logged");
+    }
+
     @GetMapping("/login")
     public String goToLogin(HttpSession session) {
-        return "login";
+        // Se ho fatto il login e il tipo è 1 (admin), reindirizza alla pagina di registrazione
+        if (!isLoggedIn(session))
+            return "login";
+        else
+            return "dashboard";
     }
 
     @GetMapping("/home")
@@ -18,8 +27,17 @@ public class ControllerHTML {
         return "index"; 
     }
 
+    @GetMapping("/dashboard")
+    public String goToDash(HttpSession session) {
+        return "dashboard"; 
+    }
+
     @GetMapping("/register")
     public String goToRegistrazione(HttpSession session) {
-        return "registrazione";
+        // Se ho fatto il login e il tipo è 1 (admin), reindirizza alla pagina di registrazione
+        if (!isLoggedIn(session))
+            return "registrazione";
+        else
+            return "dashboard";
     }
 }
