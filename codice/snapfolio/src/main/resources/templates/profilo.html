@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profilo - Snapfolio</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom Script -->
+  <script src="script/profilo.js"></script>
+  <style>
+    .post {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="my-4 text-center">
+      <h1>Il Mio Profilo</h1>
+    </header>
+    <section id="my-posts" class="my-5">
+      <h2>I Miei Post</h2>
+      <div id="posts-list">
+        <!-- Qui saranno visualizzati i post -->
+      </div>
+    </section>
+    <section id="preferred-categories" class="my-5">
+      <h2>Le Mie Categorie Preferite</h2>
+      <ul id="categories-list">
+        <!-- Qui saranno visualizzate le categorie -->
+      </ul>
+      <form id="add-category-form">
+        <div class="form-group">
+          <label for="category">Aggiungi una Categoria Preferita:</label>
+          <input type="text" id="category" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Aggiungi</button>
+      </form>
+    </section>
+  </div>
+</body>
+
+</html>

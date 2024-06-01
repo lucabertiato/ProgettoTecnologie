@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Snapfolio</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom Script -->
+  <script src="script/home.js"></script>
+  <style>
+    .featured-image {
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .featured-image:hover {
+      transform: scale(1.05);
+    }
+
+    .featured-image-wrapper {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="my-4 text-center">
+      <h1>Snapfolio</h1>
+      <nav>
+        <a href="/profilo" class="btn btn-primary">Il Mio Profilo</a>
+        <a href="/caricaFoto" class="btn btn-secondary">Carica Foto</a>
+      </nav>
+    </header>
+    <section id="featured-images" class="my-5">
+      <h2 class="text-center">Immagini in Evidenza</h2>
+      <div class="row">
+        <div class="col-md-3 featured-image-wrapper">
+          <img id="image1" src="" alt="Immagine in evidenza 1" class="img-fluid mb-4 featured-image">
+        </div>
+        <div class="col-md-3 featured-image-wrapper">
+          <img id="image2" src="" alt="Immagine in evidenza 2" class="img-fluid mb-4 featured-image">
+        </div>
+        <div class="col-md-3 featured-image-wrapper">
+          <img id="image3" src="" alt="Immagine in evidenza 3" class="img-fluid mb-4 featured-image">
+        </div>
+        <div class="col-md-3 featured-image-wrapper">
+          <img id="image4" src="" alt="Immagine in evidenza 4" class="img-fluid mb-4 featured-image">
+        </div>
+        <div class="col-md-3 featured-image-wrapper">
+          <img id="image5" src="" alt="Immagine in evidenza 5" class="img-fluid mb-4 featured-image">
+        </div>
+        <div class="col-md-3 featured-image-wrapper">
+          <img id="image6" src="" alt="Immagine in evidenza 6" class="img-fluid mb-4 featured-image">
+        </div>
+        <div class="col-md-3 featured-image-wrapper">
+          <img id="image7" src="" alt="Immagine in evidenza 7" class="img-fluid mb-4 featured-image">
+        </div>
+        <div class="col-md-3 featured-image-wrapper">
+          <img id="image8" src="" alt="Immagine in evidenza 8" class="img-fluid mb-4 featured-image">
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>

@@ -33,8 +33,7 @@ public class ControllerHTML {
     }
 
     @GetMapping("/register")
-    public String goToRegistrazione(HttpSession session) {
-        // Se ho fatto il login e il tipo è 1 (admin), reindirizza alla pagina di registrazione
+    public String goToRegistrazione(HttpSession session) {  
         if (!isLoggedIn(session))
             return "registrazione";
         else

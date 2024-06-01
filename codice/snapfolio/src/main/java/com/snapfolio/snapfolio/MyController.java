@@ -23,7 +23,25 @@ public class MyController{
             //se id=0 admin
             //se id=1 utente
             sessionLogin(id);
-            return new Response("ok", id, "Successo");
+            if(id != -1)
+                return new Response("ok", id, "Successo");
+            else
+                return new Response("ko", id, "Le credenziali non coincidono");
+        }
+        return new Response("ko", -1, "Credenziali non inserite");
+    }
+
+    @GetMapping("/newUtente")
+    public Response registrazione(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password, 
+    @RequestParam(value = "username", required = true) String username){
+        //controllo parametri
+        if (!email.equals("") && !password.equals("") && !username.equals("")){
+            //controllo credenziali
+            boolean result = gestioneUser.insertUtente(email, password, username);
+            if(result)
+                return new Response("ok", 400, "Successo");
+            else
+                return new Response("ko", 200, "Errore");
         }
         return new Response("ko", -1, "Credenziali non inserite");
     }

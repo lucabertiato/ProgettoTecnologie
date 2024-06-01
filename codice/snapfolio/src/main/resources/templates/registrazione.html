@@ -6,7 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrazione - Snapfolio</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- CryptoJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+  <!-- Custom Script -->
+  <script src="script/registrazioneUtente.js"></script>
 </head>
 
 <body>
@@ -16,49 +24,34 @@
         <div class="card my-5">
           <div class="card-body">
             <h2 class="card-title text-center">Crea un nuovo account</h2>
-            <form method="post" action="/register">
-              <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="username">Nome utente:</label>
-                <input type="text" id="username" name="username" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="phone">Numero di telefono:</label>
-                <input type="tel" id="phone" name="phone" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="confirm_password">Conferma Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="birthdate">Data di nascita:</label>
-                <input type="date" id="birthdate" name="birthdate" class="form-control" required>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">Registrati</button>
-            </form>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="username">Nome utente:</label>
+              <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="confirm_password">Conferma Password:</label>
+              <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+            </div>
+            <button onclick="insert()" class="btn btn-primary btn-block">Registrati</button>
             <p class="text-center mt-3">
               Hai già un account? <a href="/login">Accedi qui</a>.
             </p>
             <p class="text-center mt-3">
-                <a href="/home">Torna alla home</a>.
-              </p>
+              <a href="/home">Torna alla home</a>.
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>

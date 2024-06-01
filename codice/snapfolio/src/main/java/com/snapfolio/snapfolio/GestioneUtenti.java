@@ -21,6 +21,28 @@ public class GestioneUtenti {
         }
     }
 
+    public Boolean insertUtente(String email, String password, String username) {
+        try {
+            // Inserimento utente nella tabella 'utenti'
+            PreparedStatement query = connDB.prepareStatement("INSERT INTO utenti (email, username, password, admin) VALUES (?, ?, ?, 1)");
+            query.setString(1, email);
+            query.setString(2, username);
+            query.setString(3, password);
+    
+            int result = query.executeUpdate();
+            if (result > 0) {
+                query.close();
+                return true;
+            } else {
+                query.close();
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public int checkCredentials(String email, String password) {
         int id = -1;
         try {
