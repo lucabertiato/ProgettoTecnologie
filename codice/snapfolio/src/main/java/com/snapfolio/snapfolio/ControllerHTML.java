@@ -15,7 +15,7 @@ public class ControllerHTML {
 
     @GetMapping("/login")
     public String goToLogin(HttpSession session) {
-        // Se ho fatto il login e il tipo è 1 (admin), reindirizza alla pagina di registrazione
+        // Se ho fatto il login e il tipo è 1 (admin), reindirizza alla pagina dashboard
         if (!isLoggedIn(session))
             return "login";
         else
@@ -24,12 +24,15 @@ public class ControllerHTML {
 
     @GetMapping("/home")
     public String goToHome(HttpSession session) {
-        return "index"; 
+        return "index";
     }
 
     @GetMapping("/dashboard")
     public String goToDash(HttpSession session) {
-        return "dashboard"; 
+        if (isLoggedIn(session))
+            return "dashboard";
+        else
+            return "index"; 
     }
 
     @GetMapping("/register")
@@ -38,5 +41,21 @@ public class ControllerHTML {
             return "registrazione";
         else
             return "dashboard";
+    }
+
+    @GetMapping("/profilo")
+    public String goToProfilo(HttpSession session) {
+        if (isLoggedIn(session))
+            return "profilo";
+        else
+            return "index";
+    }
+
+    @GetMapping("/caricaPost")
+    public String goToCaricaPost(HttpSession session) {
+        if (isLoggedIn(session))
+            return "newPost";
+        else
+            return "index"; 
     }
 }

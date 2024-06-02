@@ -1,50 +1,66 @@
-// script/profilo.js
 $(document).ready(function() {
-    // Carica i post dell'utente
-    caricaMieiPost();
-
-    // Carica le categorie preferite dell'utente
-    caricaCategoriePreferite();
-
-    // Gestione del submit del form per aggiungere una categoria preferita
-    $('#add-category-form').submit(function(event) {
-        event.preventDefault();
-        const category = $('#category').val();
-        aggiungiCategoriaPreferita(category);
-    });
+    // Richiedi foto e categorie quando la pagina è pronta
+    getFoto();
+    getCategorie();
 });
 
-function caricaMieiPost() {
-    // Simulazione del caricamento dei post dell'utente
-    const posts = [
-        { id: 1, titolo: 'Post 1', contenuto: 'Contenuto del Post 1' },
-        { id: 2, titolo: 'Post 2', contenuto: 'Contenuto del Post 2' },
-        { id: 3, titolo: 'Post 3', contenuto: 'Contenuto del Post 3' }
-    ];
+function getFoto() {
+    $.ajax({
+        url: '/getFoto',
+        method: 'GET',
+        success: function(data) {
+            if (data.length === 0) {
+                displayNoPostsMessage();
+            } else {
+                displayPosts(data);
+            }
+        },
+        error: function(error) {
+            console.error('Errore nel caricamento delle foto:', error);
+        }
+    });
+}
 
-    // Visualizza i post nell'HTML
-    const $postsList = $('#posts-list');
+function displayNoPostsMessage() {
+    const postsList = $('#posts-list');
+    postsList.empty();
+    const messageElement = $('<div class="message"></div>');
+    messageElement.text('Non hai nessun post. ');
+    const linkElement = $('<a href="/caricaPost">Carica un post</a>');
+    messageElement.append(linkElement);
+    postsList.append(messageElement);
+}
+
+
+function displayPosts(posts) {
+    const postsList = $('#posts-list');
+    postsList.empty();
     posts.forEach(post => {
-        $postsList.append(`<div class="post"><h3>${post.titolo}</h3><p>${post.contenuto}</p></div>`);
+        const postElement = $('<div class="post"></div>');
+        postElement.text(post);
+        postsList.append(postElement);
     });
 }
 
-function caricaCategoriePreferite() {
-    // Simulazione del caricamento delle categorie preferite dell'utente
-    const categories = ['natura', 'viaggi', 'cibo'];
+function getCategorie() {
+    $.ajax({
+        url: '/getCategorie',
+        method: 'GET',
+        success: function(data) {
+            displayCategories(data);
+        },
+        error: function(error) {
+            console.error('Errore nel caricamento delle categorie:', error);
+        }
+    });
+}
 
-    // Visualizza le categorie nell'HTML
-    const $categoriesList = $('#categories-list');
+function displayCategories(categories) {
+    const categoriesList = $('#categories-list');
+    categoriesList.empty();
     categories.forEach(category => {
-        $categoriesList.append(`<li>${category}</li>`);
+        const categoryElement = $('<li></li>');
+        categoryElement.text(category.nome); // Aggiungo il nome della categoria
+        categoriesList.append(categoryElement);
     });
-}
-
-function aggiungiCategoriaPreferita(category) {
-    // Simulazione dell'aggiunta di una categoria preferita
-    const $categoriesList = $('#categories-list');
-    $categoriesList.append(`<li>${category}</li>`);
-
-    // Resetta il campo di input
-    $('#category').val('');
 }

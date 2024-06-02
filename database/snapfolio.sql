@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 20, 2024 alle 11:41
+-- Creato il: Giu 02, 2024 alle 22:05
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `post` (
   `ID` int(11) NOT NULL,
   `IDutente` int(11) NOT NULL,
   `file` blob NOT NULL,
-  `descrizione` text NOT NULL
+  `descrizione` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -48,15 +48,35 @@ CREATE TABLE `topics` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `utente`
+-- Struttura della tabella `topicsutente`
 --
 
-CREATE TABLE `utente` (
+CREATE TABLE `topicsutente` (
+  `IDutente` int(11) NOT NULL,
+  `IDtopics` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `utenti`
+--
+
+CREATE TABLE `utenti` (
   `ID` int(11) NOT NULL,
+  `email` varchar(32) NOT NULL,
   `username` varchar(32) NOT NULL,
-  `password` int(11) NOT NULL,
+  `password` varchar(32) NOT NULL,
   `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `utenti`
+--
+
+INSERT INTO `utenti` (`ID`, `email`, `username`, `password`, `admin`) VALUES
+(1, 'lucabertiato@gmail.com', 'luca', '0cc175b9c0f1b6a831c399e269772661', 0),
+(4, 'pluto@gmail.com', 'pluto', '0cc175b9c0f1b6a831c399e269772661', 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -66,7 +86,8 @@ CREATE TABLE `utente` (
 -- Indici per le tabelle `post`
 --
 ALTER TABLE `post`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `IDutente` (`IDutente`);
 
 --
 -- Indici per le tabelle `topics`
@@ -75,10 +96,20 @@ ALTER TABLE `topics`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indici per le tabelle `utente`
+-- Indici per le tabelle `topicsutente`
 --
-ALTER TABLE `utente`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `topicsutente`
+  ADD UNIQUE KEY `IDutente_2` (`IDutente`,`IDtopics`),
+  ADD KEY `IDutente` (`IDutente`),
+  ADD KEY `IDtopics` (`IDtopics`);
+
+--
+-- Indici per le tabelle `utenti`
+--
+ALTER TABLE `utenti`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -97,10 +128,27 @@ ALTER TABLE `topics`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `utente`
+-- AUTO_INCREMENT per la tabella `utenti`
 --
-ALTER TABLE `utente`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `utenti`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `post`
+--
+ALTER TABLE `post`
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`IDutente`) REFERENCES `utenti` (`ID`);
+
+--
+-- Limiti per la tabella `topicsutente`
+--
+ALTER TABLE `topicsutente`
+  ADD CONSTRAINT `topicsutente_ibfk_1` FOREIGN KEY (`IDutente`) REFERENCES `utenti` (`ID`),
+  ADD CONSTRAINT `topicsutente_ibfk_2` FOREIGN KEY (`IDtopics`) REFERENCES `topics` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

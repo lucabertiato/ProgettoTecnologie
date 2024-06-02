@@ -1,13 +1,14 @@
-// script/home.js
 $(document).ready(function() {
     caricaImmaginiInEvidenza();
 });
 
 function caricaImmaginiInEvidenza() {
-    const categories = ['nature', 'city', 'people', 'animals', 'art', 'sports', 'tecnology', 'food'];
-    
+    const categories = ['nature', 'city', 'people', 'animals', 'art', 'sports', 'technology', 'food'];
     categories.forEach((category, index) => {
-        const url = `https://source.unsplash.com/random/?${category}`;
-        $(`#image${index + 1}`).attr('src', url);
+        const imgElement = $(`#image${index + 1}`);
+        const url = `https://source.unsplash.com/random/?${category}&t=${new Date().getTime()}`;
+        
+        // Rimuovi l'attributo src prima di impostare il nuovo URL
+        imgElement.removeAttr('src').attr('src', url);
     });
 }

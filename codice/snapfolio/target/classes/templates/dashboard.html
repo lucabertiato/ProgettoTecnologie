@@ -38,11 +38,14 @@
       <h1>Snapfolio</h1>
       <nav>
         <a href="/profilo" class="btn btn-primary">Il Mio Profilo</a>
-        <a href="/caricaFoto" class="btn btn-secondary">Carica Foto</a>
+        <a href="/caricaPost" class="btn btn-secondary">Carica Foto</a>
       </nav>
     </header>
     <section id="featured-images" class="my-5">
       <h2 class="text-center">Immagini in Evidenza</h2>
+      <div class="text-center mb-4">
+        <button id="generateImages" class="btn btn-success" onclick="caricaImmaginiInEvidenza()">Ricarica Immagini</button>
+      </div>
       <div class="row">
         <div class="col-md-3 featured-image-wrapper">
           <img id="image1" src="" alt="Immagine in evidenza 1" class="img-fluid mb-4 featured-image">

@@ -1,5 +1,6 @@
 package com.snapfolio.snapfolio;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,28 @@ public class MyController{
                 return new Response("ko", 200, "Errore");
         }
         return new Response("ko", -1, "Credenziali non inserite");
+    }
+
+    @GetMapping("/getFoto")
+    public Response getFoto(HttpSession session){
+        //prendi id
+        int id = getIDsession(session);
+        //prendo le foto di questo utente
+        gestioneUser.getFotoUtente(id);
+        return null;
+    }
+
+    @GetMapping("/getCategorie")
+    public List<Categoria> getCategorie(HttpSession session){
+        //prendi id
+        int id = getIDsession(session);
+        //prendo le foto di questo utente
+        List<Categoria> listaCategorie = gestioneUser.getCategorieUtente(id);
+        return listaCategorie;
+    }
+
+    private int getIDsession(HttpSession session) {
+        return (int) session.getAttribute("id");
     }
 
     public void sessionLogin(int id){

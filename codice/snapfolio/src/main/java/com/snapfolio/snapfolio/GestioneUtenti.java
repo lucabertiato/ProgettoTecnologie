@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GestioneUtenti {
     private Connection connDB;
@@ -40,6 +42,51 @@ public class GestioneUtenti {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public List<Categoria> getCategorieUtente(int id){
+        List<Categoria> categorieUtente = new ArrayList<>();
+        try {
+            // preparazione query
+            String sql = "SELECT t.ID, t.nome " +
+                         "FROM topics t " +
+                         "JOIN topicsutente tu ON t.ID = tu.IDtopics " +
+                         "WHERE tu.IDutente = ?";
+            PreparedStatement query = connDB.prepareStatement(sql);
+            query.setInt(1, id);
+            // esecuzione
+            ResultSet rs = query.executeQuery();
+            // prendo i dati
+            while (rs.next()) {
+                int idCategoria = rs.getInt("ID");
+                String nomeCategoria = rs.getString("nome");
+                Categoria categoria = new Categoria(idCategoria, nomeCategoria);
+                categorieUtente.add(categoria);
+            }
+            // chiudo esecuzione query
+            query.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return categorieUtente;
+    }
+
+    public void getFotoUtente(int id){
+        try {
+            // preparazione query
+            PreparedStatement query = connDB.prepareStatement("SELECT file FROM post WHERE id=?");
+            query.setInt(1, id);
+            // esecuzione
+            ResultSet rs = query.executeQuery();
+            // prendo i dati
+            if (rs.next()) {
+                
+            }
+            // chiudo esecuzione query
+            query.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
