@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 02, 2024 alle 22:05
+-- Creato il: Giu 03, 2024 alle 09:02
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -42,8 +42,20 @@ CREATE TABLE `post` (
 
 CREATE TABLE `topics` (
   `ID` int(11) NOT NULL,
-  `nome` int(11) NOT NULL
+  `nome` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `topics`
+--
+
+INSERT INTO `topics` (`ID`, `nome`) VALUES
+(1, 'nature'),
+(2, 'city'),
+(3, 'people'),
+(4, 'art'),
+(6, 'art'),
+(7, 'sport');
 
 -- --------------------------------------------------------
 
@@ -55,6 +67,16 @@ CREATE TABLE `topicsutente` (
   `IDutente` int(11) NOT NULL,
   `IDtopics` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dump dei dati per la tabella `topicsutente`
+--
+
+INSERT INTO `topicsutente` (`IDutente`, `IDtopics`) VALUES
+(4, 1),
+(4, 2),
+(4, 6),
+(4, 7);
 
 -- --------------------------------------------------------
 
@@ -125,7 +147,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT per la tabella `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`

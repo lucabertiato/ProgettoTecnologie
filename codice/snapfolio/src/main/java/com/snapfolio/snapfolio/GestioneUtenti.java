@@ -45,6 +45,46 @@ public class GestioneUtenti {
         }
     }
 
+    public Boolean insertCategoria(String categoria, int idUtente) {
+        try {
+            // Inserimento categoria nella tabella 'topics' e ottenere l'ID generato
+            PreparedStatement query = connDB.prepareStatement("INSERT INTO topics (nome) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
+            query.setString(1, categoria);
+    
+            int result = query.executeUpdate();
+    
+            if (result > 0) {
+                // Ottenere l'ID generato
+                ResultSet generatedKeys = query.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int topicId = generatedKeys.getInt(1);
+                    generatedKeys.close();
+                    query.close();
+    
+                    // Inserimento nella tabella 'topicsutente' usando l'ID del topic e l'ID dell'utente
+                    PreparedStatement userTopicQuery = connDB.prepareStatement("INSERT INTO topicsutente (IDutente, IDtopics) VALUES (?, ?)");
+                    userTopicQuery.setInt(1, idUtente);
+                    userTopicQuery.setInt(2, topicId);
+    
+                    int userTopicResult = userTopicQuery.executeUpdate();
+                    userTopicQuery.close();
+    
+                    return userTopicResult > 0;
+                } else {
+                    query.close();
+                    return false;
+                }
+            } else {
+                query.close();
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+
     public List<Categoria> getCategorieUtente(int id){
         List<Categoria> categorieUtente = new ArrayList<>();
         try {

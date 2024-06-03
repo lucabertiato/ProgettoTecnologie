@@ -47,6 +47,21 @@ public class MyController{
         return new Response("ko", -1, "Credenziali non inserite");
     }
 
+    @GetMapping("/newCategoria")
+    public Response registrazione(@RequestParam(value = "categoria", required = true) String categoria, HttpSession session){
+        int id = getIDsession(session);
+        //controllo parametri
+        if (!categoria.equals("")){
+            //controllo credenziali
+            boolean result = gestioneUser.insertCategoria(categoria, id);
+            if(result)
+                return new Response("ok", 400, "Successo");
+            else
+                return new Response("ko", 200, "Errore");
+        }
+        return new Response("ko", -1, "Credenziali non inserite");
+    }
+
     @GetMapping("/getFoto")
     public Response getFoto(HttpSession session){
         //prendi id
